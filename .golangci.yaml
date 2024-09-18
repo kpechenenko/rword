@@ -1,32 +1,79 @@
 linters-settings:
-  lll:
-      line-length: 150
+  forbidigo:
+    forbid:
+      - ^print.*$
+      - p: ^fmt\.Print.*$
+        msg: Do not commit print statements.
+  govet:
+    enable:
+      - composites
+    disable:
+      - printf
+  dupl:
+    threshold: 120
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  misspell:
+    locale: US
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - whyNoLint
+      - commentFormatting # insane-doc syntax requires "//>" format
+      - paramTypeCombine
+      - ptrToRefParam # we use interface pointer in many places
+      - unnamedResult
+      - sprintfQuotedString
+      - tooManyResultsChecker
+  gosec:
+    excludes:
+      - G304 # Potential file inclusion via variable -- it's ok for this project
+  stylecheck:
+    checks:
+      - '-ST1021' # insane-doc syntax requires "//>" format
+
 linters:
   disable-all: true
   enable:
-    - depguard
-    - errcheck
+    - forbidigo
+    - dogsled
     - dupl
-    - exhaustive
-    - funlen
+    - errcheck
     - goconst
     - gocritic
-    - gocyclo
-    - gofmt
     - goimports
-    - revive
-    - mnd
     - gosimple
     - govet
     - ineffassign
-    - lll
     - misspell
     - nakedret
-    - nolintlint
-    - staticcheck
+    - prealloc
     - stylecheck
     - typecheck
     - unconvert
     - unparam
     - unused
+    - usestdlibvars
     - whitespace
+
+issues:
+  exclude-use-default: false
+  exclude-rules:
+    # Disable linters that are annoying in tests.
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+        - goconst
+
+    # Ignore shadowing of err.
+    - linters: [ govet ]
+      text: 'declaration of "(err|ctx)"'
