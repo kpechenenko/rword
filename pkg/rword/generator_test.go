@@ -11,7 +11,7 @@ func TestGeneratorGet(t *testing.T) {
 		t.Fatal(err)
 	}
 	w := g.Get()
-	if len(w) == 0 {
+	if w == "" {
 		t.Fatal("empty word")
 	}
 }
@@ -27,7 +27,7 @@ func TestGeneratorGetList(t *testing.T) {
 		t.Fatalf("len of generated word list = %d, want %d", len(words), n)
 	}
 	for _, w := range words {
-		if len(w) == 0 {
+		if w == "" {
 			t.Fatal("empty word in generated word list")
 		}
 	}
@@ -42,7 +42,7 @@ func TestGeneratorWithDefaultDict(t *testing.T) {
 		t.Fatal("empty default dict")
 	}
 	for i, w := range g.dict {
-		if len(w) == 0 {
+		if w == "" {
 			t.Fatalf("empty word in default dict[%d]", i)
 		}
 	}

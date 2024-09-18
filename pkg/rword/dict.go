@@ -18,7 +18,7 @@ func LoadDictFromFile(name string) (Dictionary, error) {
 	dict := make(Dictionary, 0, len(src))
 	for _, w := range src {
 		w = strings.TrimSpace(w)
-		if len(w) == 0 {
+		if w == "" {
 			continue
 		}
 		dict = append(dict, w)
@@ -30,7 +30,7 @@ const defaultDictFile = "data/dict"
 
 // GetPathToDefaultDict with 370_000+ words.
 func GetPathToDefaultDict() string {
-	_, path, _, _ := runtime.Caller(0)
+	_, path, _, _ := runtime.Caller(0) //nolint:dogsled
 	path = filepath.Join(filepath.Dir(path), defaultDictFile)
 	return path
 }
