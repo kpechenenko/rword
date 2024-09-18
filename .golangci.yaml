@@ -4,7 +4,6 @@ linters-settings:
 linters:
   disable-all: true
   enable:
-    - deadcode
     - depguard
     - errcheck
     - dupl
@@ -16,7 +15,7 @@ linters:
     - gofmt
     - goimports
     - revive
-    - gomnd
+    - mnd
     - gosimple
     - govet
     - ineffassign
@@ -30,5 +29,4 @@ linters:
     - unconvert
     - unparam
     - unused
-    - varcheck
     - whitespace
