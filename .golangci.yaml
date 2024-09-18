@@ -36,7 +36,6 @@ linters-settings:
 linters:
   disable-all: true
   enable:
-    - forbidigo
     - dogsled
     - dupl
     - errcheck
