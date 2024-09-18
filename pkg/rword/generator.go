@@ -3,6 +3,7 @@ package rword
 import (
 	"errors"
 	"math/rand"
+	"strings"
 )
 
 // RandomWord a random word generator.
@@ -11,6 +12,8 @@ type RandomWord interface {
 	Get() string
 	// GetList of random words.
 	GetList(n int) []string
+	// GetStr get random string of n length.
+	GetStr(n int) string
 }
 
 // Dictionary _
@@ -38,6 +41,26 @@ func (g *Generator) GetList(n int) []string {
 		words[i] = g.Get()
 	}
 	return words
+}
+
+// GetStr get random string of n length.
+func (g *Generator) GetStr(n int) string {
+	if n <= 0 {
+		return ""
+	}
+	var sb strings.Builder
+	for {
+		word := g.Get() + " "
+		remains := n - sb.Len()
+		if len(word) > remains {
+			word = word[:remains]
+		}
+		sb.WriteString(word)
+		if sb.Len() == n {
+			break
+		}
+	}
+	return sb.String()
 }
 
 // NewGenerator create a word generator with saved dictionary.

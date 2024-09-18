@@ -33,6 +33,38 @@ func TestGeneratorGetList(t *testing.T) {
 	}
 }
 
+func TestGeneratorGetStr(t *testing.T) {
+	g, err := NewGenerator()
+	if err != nil {
+		t.Fatal(err)
+	}
+	n := 10
+	s := g.GetStr(n)
+	if len(s) != n {
+		t.Fatalf("len of generated str = %d, want %d", len(s), n)
+	}
+	n = 20
+	s = g.GetStr(n)
+	if len(s) != n {
+		t.Fatalf("len of generated str = %d, want %d", len(s), n)
+	}
+	n = 1000
+	s = g.GetStr(n)
+	if len(s) != n {
+		t.Fatalf("len of generated str = %d, want %d", len(s), n)
+	}
+	n = -1
+	s = g.GetStr(n)
+	if s != "" {
+		t.Fatalf("for negavite n generated string should be emtpy, but was %s", s)
+	}
+	n = 0
+	s = g.GetStr(n)
+	if s != "" {
+		t.Fatalf("for zero n generated string should be emtpy, but was %s", s)
+	}
+}
+
 func TestGeneratorWithDefaultDict(t *testing.T) {
 	g, err := NewGenerator()
 	if err != nil {

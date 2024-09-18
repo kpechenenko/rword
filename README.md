@@ -46,5 +46,8 @@ func main() {
 	// Get a random word.
 	word = g2.Get()
 	fmt.Println(word)
+    // Get random string of n length.
+	s := g.GetStr(10)
+	fmt.Println(s)
 }
 ```
