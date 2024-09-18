@@ -56,12 +56,12 @@ func TestGeneratorGetStr(t *testing.T) {
 	n = -1
 	s = g.GetStr(n)
 	if s != "" {
-		t.Fatalf("for negavite n generated string should be emtpy, but was %s", s)
+		t.Fatalf("for negavite n generated string should be empty, but was %s", s)
 	}
 	n = 0
 	s = g.GetStr(n)
 	if s != "" {
-		t.Fatalf("for zero n generated string should be emtpy, but was %s", s)
+		t.Fatalf("for zero n generated string should be empty, but was %s", s)
 	}
 }
 
