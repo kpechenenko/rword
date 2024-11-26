@@ -22,10 +22,10 @@ import (
 )
 
 func main() {
-	var g rword.RandomWord
+	var g rword.GenerateRandom
 	var err error
 	// Create a random word generator using saved dict with 370_000+ words.
-	g, err = rword.NewGenerator()
+	g, err = rword.New()
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +43,7 @@ func main() {
 	
 	// Create a random word generator using your dictionary. Dictionary is a text file, 1 line - 1 word.
 	// Returns an error, if dictionary is empty.
-	g2, err := rword.NewGeneratorWithDict("path/to/your/dict")
+	g2, err := rword.NewWithDict("path/to/your/dict")
 	if err != nil {
 		panic(err)
 	}
