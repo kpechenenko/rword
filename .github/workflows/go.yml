@@ -22,9 +22,6 @@ jobs:
         with:
           version: v1.62
           args: --timeout 5m
-          working-directory: rword/v2
-
 
       - name: Test
         run: go test -v --race ./...
-        working-directory: rword/v2

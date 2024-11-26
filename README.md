@@ -18,7 +18,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kpechenenko/rword/pkg/rword/v2"
+	"github.com/kpechenenko/rword/pkg/rword"
 )
 
 func main() {
