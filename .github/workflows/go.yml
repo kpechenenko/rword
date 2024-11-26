@@ -13,6 +13,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./rword/v2
     steps:
       - uses: actions/checkout@v4
 
@@ -28,4 +31,4 @@ jobs:
           args: --timeout 5m
 
       - name: Test
-        run: cd ./rword/v2 && go test -v --race ./...
+        run: go test -v --race ./...
