@@ -1,4 +1,4 @@
-package rword
+package v2
 
 import (
 	"errors"
@@ -6,23 +6,23 @@ import (
 )
 
 func TestGeneratorGet(t *testing.T) {
-	g, err := NewGenerator()
+	g, err := New()
 	if err != nil {
 		t.Fatal(err)
 	}
-	w := g.Get()
+	w := g.Word()
 	if w == "" {
 		t.Fatal("empty word")
 	}
 }
 
 func TestGeneratorGetList(t *testing.T) {
-	g, err := NewGenerator()
+	g, err := New()
 	if err != nil {
 		t.Fatal(err)
 	}
 	n := 10
-	words := g.GetList(n)
+	words := g.WordList(n)
 	if len(words) != n {
 		t.Fatalf("len of generated word list = %d, want %d", len(words), n)
 	}
@@ -34,39 +34,39 @@ func TestGeneratorGetList(t *testing.T) {
 }
 
 func TestGeneratorGetStr(t *testing.T) {
-	g, err := NewGenerator()
+	g, err := New()
 	if err != nil {
 		t.Fatal(err)
 	}
 	n := 10
-	s := g.GetStr(n)
+	s := g.Str(n)
 	if len(s) != n {
 		t.Fatalf("len of generated str = %d, want %d", len(s), n)
 	}
 	n = 20
-	s = g.GetStr(n)
+	s = g.Str(n)
 	if len(s) != n {
 		t.Fatalf("len of generated str = %d, want %d", len(s), n)
 	}
 	n = 1000
-	s = g.GetStr(n)
+	s = g.Str(n)
 	if len(s) != n {
 		t.Fatalf("len of generated str = %d, want %d", len(s), n)
 	}
 	n = -1
-	s = g.GetStr(n)
+	s = g.Str(n)
 	if s != "" {
 		t.Fatalf("for negavite n generated string should be empty, but was %s", s)
 	}
 	n = 0
-	s = g.GetStr(n)
+	s = g.Str(n)
 	if s != "" {
 		t.Fatalf("for zero n generated string should be empty, but was %s", s)
 	}
 }
 
 func TestGeneratorWithDefaultDict(t *testing.T) {
-	g, err := NewGenerator()
+	g, err := New()
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -81,11 +81,11 @@ func TestGeneratorWithDefaultDict(t *testing.T) {
 }
 
 func TestGeneratorWithDict(t *testing.T) {
-	g, err := NewGeneratorWithDict("testdata/valid_dict")
+	g, err := NewWithDict("testdata/valid_dict")
 	if err != nil {
 		t.Fatal(err)
 	}
-	word := g.Get()
+	word := g.Word()
 	found := false
 	for _, w := range g.dict {
 		if word == w {
@@ -99,7 +99,7 @@ func TestGeneratorWithDict(t *testing.T) {
 }
 
 func TestGeneratorWithEmptyDict(t *testing.T) {
-	_, err := NewGeneratorWithDict("testdata/empty_dict")
+	_, err := NewWithDict("testdata/empty_dict")
 	if !errors.Is(err, ErrEmptyDict) {
 		t.Fatal(err)
 	}

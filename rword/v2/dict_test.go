@@ -1,4 +1,4 @@
-package rword
+package v2
 
 import (
 	"errors"

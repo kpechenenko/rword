@@ -18,7 +18,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kpechenenko/rword/pkg/rword"
+	"github.com/kpechenenko/rword/pkg/rword/v2"
 )
 
 func main() {
@@ -30,13 +30,17 @@ func main() {
 		panic(err)
 	}
 	// Get a random word.
-	word := g.Get()
+	word := g.Word()
 	fmt.Println(word)
 	// Get a list of 10 random words.
-	words := g.GetList(10)
+	words := g.WordList(10)
 	for _, w := range words {
 		fmt.Println(w)
 	}
+	// Get random string with a length of 10.
+	s := g.Str(10)
+	fmt.Println(s)
+	
 	// Create a random word generator using your dictionary. Dictionary is a text file, 1 line - 1 word.
 	// Returns an error, if dictionary is empty.
 	g2, err := rword.NewGeneratorWithDict("path/to/your/dict")
@@ -44,10 +48,7 @@ func main() {
 		panic(err)
 	}
 	// Get a random word.
-	word = g2.Get()
+	word = g2.Word()
 	fmt.Println(word)
-	// Get random string with a length of 10.
-	s := g.GetStr(10)
-	fmt.Println(s)
 }
 ```
