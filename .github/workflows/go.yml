@@ -27,8 +27,5 @@ jobs:
           version: latest
           args: --timeout 5m
 
-      - name: Build
-        run: go build -o bin/rword -v cmd/rword/main.go
-
       - name: Test
-        run: go test -v ./...
+        run: cd ./rword/v2 && go test -v --race ./...
