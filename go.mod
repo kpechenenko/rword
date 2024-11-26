@@ -1,3 +1,3 @@
-module github.com/kpechenenko/rword/v2
+module github.com/kpechenenko/rword
 
 go 1.21
